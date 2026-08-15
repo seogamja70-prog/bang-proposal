@@ -1,12 +1,13 @@
 {
   "name": "bang-proposal",
-  "version": "1.0.0",
-  "description": "방긋 프로포즈 게임",
+  "version": "2.0.0",
+  "description": "방긋 프로포즈 멀티플레이 게임",
   "main": "server.js",
   "scripts": {
     "start": "node server.js"
   },
   "dependencies": {
-    "express": "^5.1.0"
+    "express": "^5.1.0",
+    "socket.io": "^4.8.1"
   }
 }
