@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>방긋 프로포즈</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<main>
+
+    <!-- 시작 화면 -->
+    <section id="startScreen" class="screen active">
+        <div class="hero-card">
+            <div class="ring-logo">💍</div>
+            <p class="eyebrow">A VERY STRANGE PROPOSAL</p>
+            <h1>방긋 프로포즈</h1>
+            <p class="subtitle">세상에서 가장 이상한 프로포즈를 만들어라</p>
+
+            <div class="gold-divider"></div>
+
+            <div class="setup-box">
+                <h2>플레이어 설정</h2>
+
+                <label for="playerCount">플레이어 수</label>
+                <select id="playerCount" disabled>
+                    <option value="3" selected>3명</option>
+                </select>
+
+                <div id="nameInputs" class="name-inputs"></div>
+
+                <button id="startButton" class="primary-button">
+                    게임 시작 💍
+                </button>
+
+                <p class="rule-note">
+                    총 9개의 반지 · 플레이어당 반지 3개
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 피앙세 화면 -->
+    <section id="fianceScreen" class="screen">
+        <div class="page-card centered">
+            <div class="round-badge">ROUND <span id="roundNumber">1</span></div>
+            <div class="big-ring">💍</div>
+            <h1>이번 라운드의 피앙세</h1>
+            <h2 id="fianceName"></h2>
+
+            <div class="instruction-paper">
+                <p>피앙세는 고개를 돌려주세요.</p>
+                <p>다른 플레이어들은 차례대로 프로포즈를 만듭니다.</p>
+                <p class="small">30초 제한은 없습니다. 천천히 만들어도 됩니다.</p>
+            </div>
+
+            <p id="nextFianceHint" class="hint"></p>
+
+            <button id="fianceReadyButton" class="primary-button">
+                고개 돌리기 완료 · 프로포즈 만들기
+            </button>
+        </div>
+    </section>
+
+    <!-- 프로포즈 작성 -->
+    <section id="proposalScreen" class="screen">
+        <div class="game-page">
+
+            <header class="game-header">
+                <div>
+                    <span class="small-label">ROUND <b id="proposalRound">1</b></span>
+                    <h1 id="currentPlayerName">플레이어 1</h1>
+                </div>
+                <div class="turn-label">프로포즈 작성 중</div>
+            </header>
+
+            <div class="proposal-paper">
+                <div class="paper-ornament top">✦ ───────── ✧ ───────── ✦</div>
+                <div class="paper-title">나의 프로포즈</div>
+                <div id="proposalWords" class="proposal-words">
+                    <div class="empty-message">단어 카드와 조사 카드를 선택하세요.</div>
+                </div>
+                <div class="paper-ornament bottom">✦ ───────── ✧ ───────── ✦</div>
+            </div>
+
+            <div class="cards-panel">
+                <div class="panel-title">
+                    <span>내 단어 카드</span>
+                    <span class="count-label">6장</span>
+                </div>
+                <div id="playerCards" class="word-cards"></div>
+            </div>
+
+            <div class="cards-panel particle-panel">
+                <div class="panel-title">
+                    <span>내 조사 카드</span>
+                    <span class="count-label">6장</span>
+                </div>
+                <p class="panel-help">
+                    각 조사 카드에서 하나를 선택하세요. 선택한 카드는 프로포즈에 들어갑니다.
+                </p>
+                <div id="particleCards" class="particle-cards"></div>
+            </div>
+
+            <div class="bottom-action">
+                <button id="completeProposalButton" class="primary-button">
+                    프로포즈 완성
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- 발표 시작 -->
+    <section id="presentationStartScreen" class="screen">
+        <div class="page-card centered">
+            <div class="big-ring">📜</div>
+            <h1>프로포즈 발표 시간</h1>
+            <p>
+                피앙세의 왼쪽 플레이어부터 차례대로 읽습니다.
+            </p>
+            <p class="small">
+                마지막에는 반드시 <b>“결혼하자!”</b>를 붙입니다.
+            </p>
+            <button id="startPresentationButton" class="primary-button">
+                발표 시작
+            </button>
+        </div>
+    </section>
+
+    <!-- 발표 -->
+    <section id="presentationScreen" class="screen">
+        <div class="page-card centered presentation-card">
+            <div class="presentation-count">
+                <span id="presentationNumber">1</span>
+                /
+                <span id="presentationTotal">2</span>
+            </div>
+
+            <h2 id="speakerName"></h2>
+
+            <div class="presentation-paper">
+                <div class="paper-ornament top">✦ ───────── ✧ ───────── ✦</div>
+                <div id="proposalText" class="presentation-text"></div>
+                <div class="paper-ornament bottom">✦ ───────── ✧ ───────── ✦</div>
+            </div>
+
+            <p id="speakerRingStatus" class="ring-status"></p>
+
+            <button id="nextProposalButton" class="primary-button">
+                다음 프로포즈
+            </button>
+        </div>
+    </section>
+
+    <!-- 반지 선택 -->
+    <section id="ringScreen" class="screen">
+        <div class="page-card">
+            <div class="centered">
+                <div class="big-ring">💍</div>
+                <h1>누구의 프로포즈가 가장 마음에 들었나요?</h1>
+                <p>마음에 드는 플레이어의 반지를 받아주세요.</p>
+            </div>
+
+            <div id="ringChoices" class="ring-choices"></div>
+        </div>
+    </section>
+
+    <!-- 라운드 결과 -->
+    <section id="roundResultScreen" class="screen">
+        <div class="page-card centered">
+            <div class="big-ring">💍</div>
+            <h1>반지를 받았습니다!</h1>
+            <h2 id="ringWinnerName"></h2>
+            <p id="ringStatus" class="ring-status"></p>
+
+            <div class="instruction-paper">
+                <p>다음 라운드에서는 피앙세가 왼쪽으로 넘어갑니다.</p>
+            </div>
+
+            <button id="nextRoundButton" class="primary-button">
+                다음 라운드
+            </button>
+        </div>
+    </section>
+
+    <!-- 게임 종료 -->
+    <section id="gameOverScreen" class="screen">
+        <div class="page-card centered winner-card">
+            <div class="big-ring">👑</div>
+            <p class="eyebrow">THE WINNER</p>
+            <h1 id="winnerName"></h1>
+            <h2>결혼 성공!</h2>
+            <p id="winnerMessage"></p>
+
+            <div class="gold-divider"></div>
+
+            <button id="restartButton" class="primary-button">
+                다시 하기
+            </button>
+        </div>
+    </section>
+
+</main>
+
+<script src="app.js"></script>
+</body>
+</html>
